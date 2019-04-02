@@ -6,7 +6,7 @@ node {
   stage('Build') {
     withCredentials([
         usernamePassword(credentialsId: 'docker-credentials',
-                         usernameVariable: 'USERNAME',
+                         usernameVariable: 'hutger',
                          passwordVariable: 'PASSWORD')]) {
       sh 'docker image build -t ${USERNAME}/demo-api:latest .'
     }
@@ -15,7 +15,7 @@ node {
   stage('Push') {
     withCredentials([
         usernamePassword(credentialsId: 'docker-credentials',
-                         usernameVariable: 'USERNAME',
+                         usernameVariable: 'hutger',
                          passwordVariable: 'PASSWORD')]) {
       sh 'docker login -p "${PASSWORD}" -u "${USERNAME}"'
       sh 'docker image push ${USERNAME}/demo-api:latest'
